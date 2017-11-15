@@ -11,6 +11,6 @@ jobs:
       deploy:
         provider: npm
         api_key: $NMP_API_KEY
-        on: deploy-npm-release
+        on: master
 
 
