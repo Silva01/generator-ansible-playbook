@@ -5,12 +5,12 @@ node_js:
 
 jobs:
   include:
-    - stage: teste
-      node_js: "8"
-      script: npm run test
     - stage: deploy
       node_js: "8"
-      email: "silva20102@gmail.com"
-      script: echo $NMP_API_KEY >> ~/.npmrc
-      script: npm publish
+      script: echo "Deploying to npm ..."
+      deploy:
+        provider: npm
+        api_key: $NMP_API_KEY
+        on: deploy-npm-release
+
 
