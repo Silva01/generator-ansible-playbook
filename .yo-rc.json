@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "Daniel Silva",
+      "authorEmail": "silva20102@gmail.com",
+      "authorUrl": "www.danielsilva.net.br"
+    }
+  }
+}
