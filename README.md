@@ -1,4 +1,4 @@
-# generator-ansible-playbook [![NPM version](https://img.shields.io/badge/nem-8-green.svg)]() [![NPM version](https://img.shields.io/badge/nem-7-green.svg)]() [![Build Status](https://travis-ci.org/Silva01/generator-ansible-playbook.svg?branch=master)](https://travis-ci.org/Silva01/generator-ansible-playbook)
+# generator-ansible-playbook [![NPM version](https://img.shields.io/badge/npm-8-green.svg)]() [![NPM version](https://img.shields.io/badge/npm-7-green.svg)]() [![Build Status](https://travis-ci.org/Silva01/generator-ansible-playbook.svg?branch=master)](https://travis-ci.org/Silva01/generator-ansible-playbook)
 > Generator to playbooks the ansible
 
 ## Installation
