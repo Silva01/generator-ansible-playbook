@@ -3,6 +3,7 @@ const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
 const path = require('path');
+const fs = require('fs');
 
 module.exports = class extends Generator {
   prompting() {
@@ -17,18 +18,6 @@ module.exports = class extends Generator {
         name: 'name',
         message: 'Qual o nome da Sua Role?',
         default: 'default'
-      },
-      {
-        type: 'list',
-        name: 'directory',
-        message: 'Qual o tipo da Role',
-        choices: [
-          'common',
-          'fooapp',
-          'monitoring',
-          'webtier'
-        ],
-        default: 'common'
       },
       {
         type: 'checkbox',
@@ -102,66 +91,71 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    if (!fs.existsSync(path.join('roles'))) {
+      console.log('Diretório não existe');
+      return;
+    }
+
     if (this.check('files')) {
       this.fs.copy(
         this.templatePath('files/**'),
-        this.destinationPath(path.join('roles', this.props.directory, this.props.name, 'files'))
+        this.destinationPath(path.join('roles', this.props.name, 'files'))
       );
     }
 
     if (this.check('handlers')) {
       this.fs.copy(
         this.templatePath('handlers/**'),
-        this.destinationPath(path.join('roles', this.props.directory, this.props.name, 'handlers'))
+        this.destinationPath(path.join('roles', this.props.name, 'handlers'))
       );
     }
 
     if (this.check('library')) {
       this.fs.copy(
         this.templatePath('library/**'),
-        this.destinationPath(path.join('roles', this.props.directory, this.props.name, 'library'))
+        this.destinationPath(path.join('roles', this.props.name, 'library'))
       );
     }
 
     if (this.check('lookupPlugins')) {
       this.fs.copy(
         this.templatePath('lookup_plugins/**'),
-        this.destinationPath(path.join('roles', this.props.directory, this.props.name, 'lookup_plugins'))
+        this.destinationPath(path.join('roles', this.props.name, 'lookup_plugins'))
       );
     }
 
     if (this.check('meta')) {
       this.fs.copy(
         this.templatePath('meta/**'),
-        this.destinationPath(path.join('roles', this.props.directory, this.props.name, 'meta'))
+        this.destinationPath(path.join('roles', this.props.name, 'meta'))
       );
     }
 
     if (this.check('moduleUtils')) {
       this.fs.copy(
         this.templatePath('module_utils/**'),
-        this.destinationPath(path.join('roles', this.props.directory, this.props.name, 'module_utils'))
+        this.destinationPath(path.join('roles', this.props.name, 'module_utils'))
       );
     }
 
     if (this.check('tasks')) {
       this.fs.copy(
         this.templatePath('tasks/**'),
-        this.destinationPath(path.join('roles', this.props.directory, this.props.name, 'tasks'))
+        this.destinationPath(path.join('roles', this.props.name, 'tasks'))
       );
     }
 
     if (this.check('templates')) {
       this.fs.copy(
         this.templatePath('templates/**'),
-        this.destinationPath(path.join('roles', this.props.directory, this.props.name, 'templates'))
+        this.destinationPath(path.join('roles', this.props.name, 'templates'))
       );
     }
 
     if (this.check('vars')) {
       this.fs.copy(
         this.templatePath('vars/**'),
-        this.destinationPath(path.join('roles', this.props.directory, this.props.name, 'vars'))
+        this.destinationPath(path.join('roles', this.props.name, 'vars'))
       );
     }
   }

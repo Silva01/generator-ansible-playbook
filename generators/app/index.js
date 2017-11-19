@@ -46,6 +46,11 @@ module.exports = class extends Generator {
             value: 'roles',
             name: 'roles',
             checked: true
+          },
+          {
+            value: 'groupVars',
+            name: 'group_vars',
+            checked: true
           }
         ]
       }
@@ -115,25 +120,17 @@ module.exports = class extends Generator {
       );
     }
 
+    if (this.check('groupVars')) {
+      this.fs.copy(
+        this.templatePath('group_vars/all'),
+        this.destinationPath(this.props.name + '/group_vars/all')
+      );
+    }
+
     if (this.check('roles')) {
       this.fs.copy(
-        this.templatePath('roles/common/.gitkeep'),
-        this.destinationPath(this.props.name + '/roles/common/.gitkeep')
-      );
-
-      this.fs.copy(
-        this.templatePath('roles/fooapp/.gitkeep'),
-        this.destinationPath(this.props.name + '/roles/fooapp/.gitkeep')
-      );
-
-      this.fs.copy(
-        this.templatePath('roles/monitoring/.gitkeep'),
-        this.destinationPath(this.props.name + '/roles/monitoring/.gitkeep')
-      );
-
-      this.fs.copy(
-        this.templatePath('roles/webtier/.gitkeep'),
-        this.destinationPath(this.props.name + '/roles/webtier/.gitkeep')
+        this.templatePath('roles/.gitkeep'),
+        this.destinationPath(this.props.name + '/roles/.gitkeep')
       );
     }
 
